@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using LeaveManagement.Web.Constants;
 using LeaveManagement.Web.Contracts;
 using LeaveManagement.Web.Data;
 using LeaveManagement.Web.Models;
 using LeaveManagement.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace LeaveManagement.Web.Controllers
 {
+    [Authorize(Roles = Roles.Administrator)]
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository leaveTypeRepository;
@@ -112,7 +115,7 @@ namespace LeaveManagement.Web.Controllers
             return View(leaveTypeVM);
         }
 
-        
+
 
         // POST: LeaveTypes/Delete/5
         [HttpPost, ActionName("Delete")]
